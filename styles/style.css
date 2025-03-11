@@ -10,6 +10,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
+    transition: background-color 0.5s ease;
 }
 
 header {
@@ -17,15 +18,18 @@ header {
     color: white;
     padding: 2em 0;
     text-align: center;
+    transition: background-color 0.5s ease;
 }
 
 header h1 {
     font-size: 2.5em;
     margin-bottom: 0.5em;
+    animation: fadeInDown 1s ease-in-out;
 }
 
 header p {
     font-size: 1.2em;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 nav {
@@ -37,22 +41,51 @@ nav a {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    position: relative;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 .section {
     padding: 2em;
     max-width: 1200px;
     margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
 }
 
 .section h2 {
     font-size: 2em;
     margin-bottom: 1em;
     color: #4CAF50;
+    position: relative;
+}
+
+.section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #4CAF50;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
 }
 
 .about-content p {
@@ -71,11 +104,12 @@ nav a:hover {
     padding: 1.5em;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .project-card h3 {
@@ -96,11 +130,12 @@ nav a:hover {
     color: white;
     text-decoration: none;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
     background-color: #45a049;
+    transform: scale(1.05);
 }
 
 .skills-grid {
@@ -115,6 +150,12 @@ nav a:hover {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .skill-card h3 {
@@ -131,10 +172,25 @@ nav a:hover {
     color: #4CAF50;
     text-decoration: none;
     font-weight: 600;
+    position: relative;
 }
 
-.contact-content a:hover {
-    text-decoration: underline;
+.contact-content a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #4CAF50;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.contact-content a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 footer {
@@ -142,4 +198,72 @@ footer {
     padding: 1em;
     background-color: #f1f1f1;
     margin-top: 2em;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Additional Sections */
+.cv-section {
+    padding: 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.cv-section h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    color: #4CAF50;
+    position: relative;
+}
+
+.cv-section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #4CAF50;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+
+.cv-content {
+    background: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-content:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cv-content p {
+    font-size: 1em;
+    color: #666;
 }
