@@ -17,11 +17,14 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 2em 0;
-    text-align: center;
-    transition: background-color 0.5s ease;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 header h1 {
@@ -48,10 +51,10 @@ nav a {
 }*
 
 .project-image {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
+    width: 100%; /* Prend toute la largeur de la carte */
+    height: 200px; /* Hauteur fixe pour toutes les images */
+    object-fit: cover; /* Assure que l'image couvre bien l'espace */
+    border-radius: 8px 8px 0 0; /* Arrondi uniquement en haut */
 }
 
 nav a::after {
@@ -72,13 +75,19 @@ nav a:hover::after {
     transform-origin: bottom left;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .section {
-    padding: 2em;
-    max-width: 1200px;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-in-out forwards;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.skill-card i {
+    font-size: 3em; /* Taille des icônes */
+    color: #4CAF50; /* Couleur verte pour correspondre au thème */
+    margin-bottom: 0.5em; /* Espace entre l'icône et le texte */
 }
 
 .section h2 {
@@ -109,17 +118,13 @@ nav a:hover::after {
     gap: 2em;
 }
 
-.project-card {
-    background: white;
-    padding: 1.5em;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.project-card, .skill-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card:hover {
+.project-card:hover, .skill-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .project-card h3 {
@@ -130,6 +135,35 @@ nav a:hover::after {
 .project-card p {
     font-size: 1em;
     color: #666;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .project-card, .dark-mode .skill-card, .dark-mode .cv-content {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode footer {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Bouton pour basculer en mode sombre */
+#dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 .btn {
@@ -152,20 +186,6 @@ nav a:hover::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2em;
-}
-
-.skill-card {
-    background: white;
-    padding: 1.5em;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .skill-card h3 {
