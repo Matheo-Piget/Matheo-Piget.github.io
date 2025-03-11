@@ -6,25 +6,19 @@
 }
 
 body {
-    background: linear-gradient(45deg, #f9f9f9, #e0e0e0);
-    animation: gradientBG 10s ease infinite;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: background-color 0.5s ease;
 }
 
 header {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
-    animation: gradientBG 10s ease infinite;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    background-color: #4CAF50;
+    color: white;
+    padding: 2em 0;
+    text-align: center;
+    transition: background-color 0.5s ease;
 }
 
 header h1 {
@@ -48,13 +42,6 @@ nav a {
     color: white;
     font-weight: 600;
     position: relative;
-}*
-
-.project-image {
-    width: 100%; /* Prend toute la largeur de la carte */
-    height: 200px; /* Hauteur fixe pour toutes les images */
-    object-fit: cover; /* Assure que l'image couvre bien l'espace */
-    border-radius: 8px 8px 0 0; /* Arrondi uniquement en haut */
 }
 
 nav a::after {
@@ -84,12 +71,6 @@ nav a:hover::after {
     animation: fadeInUp 0.5s ease-in-out forwards;
 }
 
-.skill-card i {
-    font-size: 3em; /* Taille des icônes */
-    color: #4CAF50; /* Couleur verte pour correspondre au thème */
-    margin-bottom: 0.5em; /* Espace entre l'icône et le texte */
-}
-
 .section h2 {
     font-size: 2em;
     margin-bottom: 1em;
@@ -110,6 +91,13 @@ nav a:hover::after {
 .about-content p {
     font-size: 1.1em;
     line-height: 1.8;
+}
+
+.project-image {
+    width: 100%; /* Prend toute la largeur de la carte */
+    height: 200px; /* Hauteur fixe pour toutes les images */
+    object-fit: cover; /* Assure que l'image couvre bien l'espace */
+    border-radius: 8px 8px 0 0; /* Arrondi uniquement en haut */
 }
 
 .projects-grid {
@@ -253,23 +241,6 @@ footer {
     position: relative;
 }
 
-.cv-section h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
-    color: #4CAF50;
-    position: relative;
-}
-
-.cv-section h2::after {
-    content: '';
-    width: 50px;
-    height: 4px;
-    background: #4CAF50;
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-}
-
 body.dark-mode {
     background: #121212;
     color: #ffffff;
@@ -297,6 +268,23 @@ body.dark-mode {
     border-radius: 50%;
     cursor: pointer;
     z-index: 1000;
+}
+
+.cv-section h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    color: #4CAF50;
+    position: relative;
+}
+
+.cv-section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #4CAF50;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
 }
 
 .cv-content {
