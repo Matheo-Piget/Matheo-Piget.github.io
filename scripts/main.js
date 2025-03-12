@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-
+    
     typeWriter(document.getElementById("header-title"), "Mathéo Piget");
     typeWriter(document.getElementById("header-description"), "Étudiant en L3 d'Informatique");
 });

@@ -18,14 +18,30 @@ body {
     0% {
         background: linear-gradient(135deg, #1ABC9C, #16A085, #2ecc71, #27ae60);
     }
+    12.5% {
+        background: linear-gradient(135deg, #16A085, #2ecc71, #27ae60, #1ABC9C);
+    }
+    20% {
+        background: linear-gradient(135deg, #2ecc71, #27ae60, #1ABC9C, #16A085);
+    }
     25% {
         background: linear-gradient(135deg, #16A085, #2ecc71, #27ae60, #1ABC9C);
     }
+    37.5% {
+        background: linear-gradient(135deg, #2ecc71, #27ae60, #1ABC9C, #16A085);
+    }
+    
     50% {
         background: linear-gradient(135deg, #2ecc71, #27ae60, #1ABC9C, #16A085);
     }
+    62.5% {
+        background: linear-gradient(135deg, #1ABC9C, #16A085, #2ecc71, #27ae60);
+    }
     75% {
         background: linear-gradient(135deg, #27ae60, #1ABC9C, #16A085, #2ecc71);
+    }
+    87.5% {
+        background: linear-gradient(135deg, #16A085, #2ecc71, #27ae60, #1ABC9C);
     }
     100% {
         background: linear-gradient(135deg, #1ABC9C, #16A085, #2ecc71, #27ae60);
@@ -35,7 +51,7 @@ body {
 /* Appliquer l'animation au header */
 header {
     animation: headerBg 10s ease infinite;
-    background-size: 300% 300%;
+    background-size: 100% 300%;
     color: white;
     padding: 3em 0;
     display: flex;
