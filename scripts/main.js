@@ -101,10 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const codeAnimationContainer = document.querySelector('.code-animation');
     const keywords = ["HTML", "CSS", "JavaScript", "Python", "Java", "SQL", "Git", "010101", "101010", "C++", "PHP", "Ruby", "Swift", "Kotlin", "React", "Node.js", "Vue.js", "Django", "Flask", "Spring", "Angular", "TypeScript", "Rust", "Go"
-        , "C#", "R", "MATLAB", "Assembly", "Bash", "Perl", "Scala", "Haskell", "Lua", "Objective-C", "Visual Basic", "Scratch", "SwiftUI", "Xcode", "Android Studio", "Eclipse", "IntelliJ IDEA", "NetBeans", "Sublime Text", "Atom", "VS Code", 
-        "class", "function", "variable", "const", "let", "if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "try", "catch", "finally", "async", "await", "promise", 
+        , "C#", "R", "MATLAB", "Assembly", "Bash", "Perl", "Scala", "Haskell", "Lua", "Objective-C", "Visual Basic", "Scratch", "SwiftUI", "Xcode", "Android Studio", "Eclipse", "IntelliJ IDEA", "NetBeans", "Sublime Text", "Atom", "VS Code",
+        "class", "function", "variable", "const", "let", "if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "try", "catch", "finally", "async", "await", "promise",
         "import", "export", "module", "require", "this", "super", "new", "delete", "typeof", "instanceof", "in", "of", "void", "null", "undefined", "true", "false", "NaN", "Infinity", "Math", "Date",
-        "Array", "Object", "String", "Number", "Boolean", "RegExp", "Error", "Map", "Set", "WeakMap", "WeakSet", "Promise", "Symbol", "BigInt", "JSON", "XMLHttpRequest", "fetch", "localStorage", "sessionStorage", 
+        "Array", "Object", "String", "Number", "Boolean", "RegExp", "Error", "Map", "Set", "WeakMap", "WeakSet", "Promise", "Symbol", "BigInt", "JSON", "XMLHttpRequest", "fetch", "localStorage", "sessionStorage",
         "console", "log", "warn", "error", "info", "debug", "assert", "clear", "count", "dir", "group", "groupEnd", "time", "timeEnd", "trace", "table", "profile", "profileEnd", "timeStamp",
         "performance", "window", "document", "navigator", "location", "history", "screen", "alert", "confirm", "prompt", "setTimeout", "setInterval", "clearTimeout", "clearInterval", "requestAnimationFrame",
         "cancelAnimationFrame", "addEventListener", "removeEventListener", "dispatchEvent", "createElement", "appendChild", "removeChild", "replaceChild", "insertBefore", "insertAfter", "cloneNode",
@@ -119,32 +119,37 @@ document.addEventListener("DOMContentLoaded", () => {
         "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000",
         "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111",
         "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000",
-        "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111", 
+        "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111",
         "char", "int", "float", "double", "string", "boolean", "array", "object", "list", "set", "map", "dictionary", "tuple", "stack", "queue", "deque", "heap", "tree", "graph",
         "linked list", "binary tree", "binary search tree", "AVL tree", "red-black tree", "B-tree", "hash table", "hash map", "hash set", "trie", "segment tree", "Fenwick tree", "disjoint set",
         "dynamic programming", "greedy algorithm", "backtracking", "divide and conquer", "brute force", "depth-first search", "breadth-first search", "Dijkstra's algorithm", "A* algorithm", "Bellman-Ford algorithm",
         "Floyd-Warshall algorithm", "Kruskal's algorithm", "Prim's algorithm", "KMP algorithm", "Rabin-Karp algorithm", "Boyer-Moore algorithm", "Knuth-Morris-Pratt algorithm", "dynamic programming",
         "greedy algorithm", "backtracking", "divide and conquer", "brute force", "depth-first search", "breadth-first search", "Dijkstra's algorithm", "A* algorithm", "Bellman-Ford algorithm"];
 
-        function createCodeElement() {
-            // Create the span for animation
-            const span = document.createElement('span');
-            span.innerText = keywords[Math.floor(Math.random() * keywords.length)];
-            span.style.position = "absolute";
-            
-            // Create a temporary hidden element to measure its width without displaying it
-            const tempSpan = span.cloneNode(true);
-            tempSpan.style.position = "absolute";
-            tempSpan.style.visibility = "hidden";
-            codeAnimationContainer.appendChild(tempSpan);
 
-            const containerWidth = codeAnimationContainer.offsetWidth;
-            let left;
-            let tries = 0;
-            let newRect;
-            const maxTries = 10;
+    const maxElements = 20; // Maximum number of elements to display at once
+    const updateInterval = 5000; // Intervalle de mise à jour en millisecondes
+    const updateBatchSize = 5; // Nombre d'éléments à mettre à jour à chaque intervalle
+    function createCodeElement() {
+        if (codeAnimationContainer.childElementCount >= maxElements) return;
+        // Create the span for animation
+        const span = document.createElement('span');
+        span.innerText = keywords[Math.floor(Math.random() * keywords.length)];
+        span.style.position = "absolute";
 
-            do {
+        // Create a temporary hidden element to measure its width without displaying it
+        const tempSpan = span.cloneNode(true);
+        tempSpan.style.position = "absolute";
+        tempSpan.style.visibility = "hidden";
+        codeAnimationContainer.appendChild(tempSpan);
+
+        const containerWidth = codeAnimationContainer.offsetWidth;
+        let left;
+        let tries = 0;
+        let newRect;
+        const maxTries = 10;
+
+        do {
             left = Math.random() * 100; // Position in vw
             tempSpan.style.left = left + "vw";
             newRect = tempSpan.getBoundingClientRect();
@@ -158,28 +163,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 const childRect = child.getBoundingClientRect();
                 // Simple horizontal overlap check
                 if (newRect.left < childRect.right && newRect.right > childRect.left) {
-                overlapFound = true;
-                break;
+                    overlapFound = true;
+                    break;
                 }
             }
             if (!overlapFound) break;
             tries++;
-            } while (tries < maxTries);
+        } while (tries < maxTries);
 
-            // Remove temporary element and assign computed left to the real span
-            codeAnimationContainer.removeChild(tempSpan);
-            span.style.left = left + "vw";
-            span.style.animationDuration = Math.random() * 2 + 2 + "s"; // Durée aléatoire pour un effet naturel
+        // Remove temporary element and assign computed left to the real span
+        codeAnimationContainer.removeChild(tempSpan);
+        span.style.left = left + "vw";
+        span.style.animationDuration = Math.random() * 2 + 2 + "s"; // Durée aléatoire pour un effet naturel
 
-            codeAnimationContainer.appendChild(span);
+        codeAnimationContainer.appendChild(span);
 
-            // Remove the span when the animation ends to keep the DOM clean.
-            span.addEventListener("animationend", () => {
+        // Remove the span when the animation ends to keep the DOM clean.
+        span.addEventListener("animationend", () => {
             span.remove();
-            });
+        });
+    }
+
+    function updateKeywords() {
+        // Supprimez progressivement les éléments existants
+        const existingSpans = Array.from(codeAnimationContainer.getElementsByTagName('span'));
+        const spansToRemove = existingSpans.slice(0, updateBatchSize);
+        spansToRemove.forEach(span => span.remove());
+
+        // Ajoutez de nouveaux éléments
+        for (let i = 0; i < updateBatchSize; i++) {
+            createCodeElement();
         }
-    
-        setInterval(createCodeElement, 500);
+    }
+
+    // Créez de nouveaux éléments à intervalles réguliers
+    setInterval(createCodeElement, 500);
+
+    // Mettez à jour les mots-clés progressivement
+    setInterval(updateKeywords, updateInterval);
 
     typeWriter(document.getElementById("header-title"), "Mathéo Piget");
     typeWriter(document.getElementById("header-description"), "Étudiant en L3 d'Informatique");
