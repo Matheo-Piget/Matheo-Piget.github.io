@@ -1,10 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Dark mode
+    // Mode sombre avec localStorage
     const darkModeToggle = document.getElementById("dark-mode-toggle");
+    const body = document.body;
+
+    // Vérifier la préférence utilisateur
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        body.classList.add("dark-mode");
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Basculer le mode sombre
     darkModeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-        darkModeToggle.innerHTML = document.body.classList.contains("dark-mode") ?
-            '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        body.classList.toggle("dark-mode");
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("dark-mode", "enabled");
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            localStorage.setItem("dark-mode", "disabled");
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
     });
 
     // Smooth scroll
@@ -70,18 +85,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
+    // Filtrage des projets avec animation
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons and add to the clicked one
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
             const filter = button.getAttribute('data-filter');
             projectCards.forEach(card => {
                 if (filter === "all" || card.classList.contains(filter)) {
-                    card.style.display = "block";
+                    card.classList.remove('hidden');
                 } else {
-                    card.style.display = "none";
+                    card.classList.add('hidden');
                 }
             });
         });
