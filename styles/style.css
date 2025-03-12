@@ -13,8 +13,29 @@ body {
     transition: background-color 0.5s ease;
 }
 
+/* Animation pour le fond du header */
+@keyframes headerBg {
+    0% {
+        background: linear-gradient(135deg, #1ABC9C, #16A085, #2ecc71, #27ae60);
+    }
+    25% {
+        background: linear-gradient(135deg, #16A085, #2ecc71, #27ae60, #1ABC9C);
+    }
+    50% {
+        background: linear-gradient(135deg, #2ecc71, #27ae60, #1ABC9C, #16A085);
+    }
+    75% {
+        background: linear-gradient(135deg, #27ae60, #1ABC9C, #16A085, #2ecc71);
+    }
+    100% {
+        background: linear-gradient(135deg, #1ABC9C, #16A085, #2ecc71, #27ae60);
+    }
+}
+
+/* Appliquer l'animation au header */
 header {
-    background: linear-gradient(135deg, #16A085, #1ABC9C);
+    animation: headerBg 10s ease infinite;
+    background-size: 300% 300%;
     color: white;
     padding: 3em 0;
     display: flex;
@@ -26,21 +47,17 @@ header {
     transition: background 0.5s ease, box-shadow 0.5s ease;
 }
 
-header:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+/* Animation pour le contenu flottant */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
 
-header h1 {
-    font-size: 3em;
-    margin-bottom: 0.5em;
-    animation: fadeInDown 1s ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-header p {
-    font-size: 1.5em;
-    animation: fadeInUp 1s ease-in-out;
-    letter-spacing: 0.05em;
+/* Appliquer l'animation au texte du header */
+.header-content h1,
+.header-content p {
+    animation: float 3s ease-in-out infinite;
 }
 
 nav {
