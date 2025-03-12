@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     darkModeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
-        darkModeToggle.innerHTML = document.body.classList.contains("dark-mode") ? 
+        darkModeToggle.innerHTML = document.body.classList.contains("dark-mode") ?
             '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     });
 
@@ -46,6 +46,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, speed);
     };
+
+    const sections = document.querySelectorAll('.section, .cv-section');
+    const observerOptions = {
+        threshold: 0.1,
+    };
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                obs.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        observer.observe(section);
+    });
 
     typeWriter(document.getElementById("header-title"), "Mathéo Piget");
     typeWriter(document.getElementById("header-description"), "Étudiant en L3 d'Informatique");
