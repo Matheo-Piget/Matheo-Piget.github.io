@@ -105,11 +105,11 @@ nav a:hover::after {
 }
 
 .project-image {
-    width: 50%; /* Prend la moitié de la largeur de la carte */
+    width: 75%; /* Prend la moitié de la largeur de la carte */
     height: 200px; /* Hauteur fixe pour toutes les images */
     object-position: center; /* Centre l'image dans son conteneur */
     object-fit: cover; /* Assure que l'image couvre bien l'espace */
-    border-radius: 8px 8px 0 0; /* Arrondi uniquement en haut */
+    border-radius: 8px 8px 8px 8px; /* Coins arrondis */
     display: block;
     margin: 0 auto; /* Centre l'image horizontalement */
 }
