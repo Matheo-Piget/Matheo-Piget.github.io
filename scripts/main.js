@@ -98,7 +98,49 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    const codeAnimationContainer = document.querySelector('.code-animation');
+    const keywords = ["HTML", "CSS", "JavaScript", "Python", "Java", "SQL", "Git", "010101", "101010", "C++", "PHP", "Ruby", "Swift", "Kotlin", "React", "Node.js", "Vue.js", "Django", "Flask", "Spring", "Angular", "TypeScript", "Rust", "Go"
+        , "C#", "R", "MATLAB", "Assembly", "Bash", "Perl", "Scala", "Haskell", "Lua", "Objective-C", "Visual Basic", "Scratch", "SwiftUI", "Xcode", "Android Studio", "Eclipse", "IntelliJ IDEA", "NetBeans", "Sublime Text", "Atom", "VS Code", 
+        "class", "function", "variable", "const", "let", "if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "try", "catch", "finally", "async", "await", "promise", 
+        "import", "export", "module", "require", "this", "super", "new", "delete", "typeof", "instanceof", "in", "of", "void", "null", "undefined", "true", "false", "NaN", "Infinity", "Math", "Date",
+        "Array", "Object", "String", "Number", "Boolean", "RegExp", "Error", "Map", "Set", "WeakMap", "WeakSet", "Promise", "Symbol", "BigInt", "JSON", "XMLHttpRequest", "fetch", "localStorage", "sessionStorage", 
+        "console", "log", "warn", "error", "info", "debug", "assert", "clear", "count", "dir", "group", "groupEnd", "time", "timeEnd", "trace", "table", "profile", "profileEnd", "timeStamp",
+        "performance", "window", "document", "navigator", "location", "history", "screen", "alert", "confirm", "prompt", "setTimeout", "setInterval", "clearTimeout", "clearInterval", "requestAnimationFrame",
+        "cancelAnimationFrame", "addEventListener", "removeEventListener", "dispatchEvent", "createElement", "appendChild", "removeChild", "replaceChild", "insertBefore", "insertAfter", "cloneNode",
+        "querySelector", "querySelectorAll", "getElementById", "getElementsByClassName", "getElementsByTagName", "getBoundingClientRect", "offsetWidth", "offsetHeight", "clientWidth", "clientHeight",
+        "scrollWidth", "scrollHeight", "scrollTop", "scrollLeft", "innerWidth", "innerHeight", "outerWidth", "outerHeight", "pageXOffset", "pageYOffset", "screenX", "screenY", "clientX", "clientY",
+        "keyCode", "charCode", "which", "target", "currentTarget", "preventDefault", "stopPropagation", "stopImmediatePropagation", "defaultPrevented", "bubbles", "cancelable", "composedPath",
+        "isTrusted", "timeStamp", "type", "srcElement", "relatedTarget", "view", "detail", "button", "buttons", "altKey", "ctrlKey", "metaKey", "shiftKey", "composedPath", "clipboardData",
+        "dataTransfer", "dragEffect", "dropEffect", "effectAllowed", "items", "types", "getData", "setData", "clearData", "setDragImage", "files", "items", "webkitGetAsEntry", "webkitGetAsFileSystemHandle",
+        "ocaml", "elixir", "erlang", "clojure", "lisp", "scheme", "prolog", "smalltalk", "dart", "f#", "groovy", "julia", "pascal", "delphi", "fortran", "cobol", "ada", "vhdl", "verilog",
+        "assembly", "x86", "arm", "mips", "risc-v", "sparc", "powerpc", "z80", "68000", "6502", "8086", "8088", "80386", "80486", "pentium", "athlon", "core", "ryzen", "xeon", "opteron",
+        "0010111011", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111",
+        "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000",
+        "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111",
+        "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000",
+        "0011001100", "0101010101", "1100110011", "111100001111", "000011110000", "1010101010", "1111111111", "0000000000", "0011001100", "0101010101", "1100110011", "111100001111", 
+        "char", "int", "float", "double", "string", "boolean", "array", "object", "list", "set", "map", "dictionary", "tuple", "stack", "queue", "deque", "heap", "tree", "graph",
+        "linked list", "binary tree", "binary search tree", "AVL tree", "red-black tree", "B-tree", "hash table", "hash map", "hash set", "trie", "segment tree", "Fenwick tree", "disjoint set",
+        "dynamic programming", "greedy algorithm", "backtracking", "divide and conquer", "brute force", "depth-first search", "breadth-first search", "Dijkstra's algorithm", "A* algorithm", "Bellman-Ford algorithm",
+        "Floyd-Warshall algorithm", "Kruskal's algorithm", "Prim's algorithm", "KMP algorithm", "Rabin-Karp algorithm", "Boyer-Moore algorithm", "Knuth-Morris-Pratt algorithm", "dynamic programming",
+        "greedy algorithm", "backtracking", "divide and conquer", "brute force", "depth-first search", "breadth-first search", "Dijkstra's algorithm", "A* algorithm", "Bellman-Ford algorithm"];
+
+        function createCodeElement() {
+            const span = document.createElement('span');
+            span.innerText = keywords[Math.floor(Math.random() * keywords.length)];
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.animationDuration = Math.random() * 2 + 2 + 's'; // Durée aléatoire pour un effet naturel
+            codeAnimationContainer.appendChild(span);
     
+            // Supprimez l'élément après la fin de l'animation
+            span.addEventListener('animationend', () => {
+                span.remove();
+            });
+        }
+    
+        setInterval(createCodeElement, 500);
+
     typeWriter(document.getElementById("header-title"), "Mathéo Piget");
     typeWriter(document.getElementById("header-description"), "Étudiant en L3 d'Informatique");
 });

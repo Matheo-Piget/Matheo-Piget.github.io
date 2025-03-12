@@ -303,6 +303,48 @@ nav a:hover::after {
     transform-origin: bottom left;
 }
 
+.code-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.code-animation span {
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    animation: floatText 3s linear infinite;
+    white-space: nowrap;
+}
+
+
+@keyframes floatText {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+
+
 .profile-photo {
     border-radius: 50%;
     width: 150px;
