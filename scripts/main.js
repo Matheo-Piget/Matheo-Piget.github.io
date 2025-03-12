@@ -91,9 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const filter = button.getAttribute('data-filter');
             projectCards.forEach(card => {
                 if (filter === "all" || card.classList.contains(filter)) {
-                    card.classList.remove('hidden');
+                    card.style.display = "";  // Réaffiche l'élément (selon le style de base)
                 } else {
-                    card.classList.add('hidden');
+                    card.style.display = "none";  // Supprime de la mise en page, forçant le grid à se réorganiser
                 }
             });
         });

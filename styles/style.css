@@ -127,12 +127,17 @@ nav a:hover::after {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    min-height: 450px; /* Ajustez cette valeur selon vos besoins */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .project-card.hidden {
     opacity: 0;
     transform: scale(0.9);
     pointer-events: none;
+    display: none;
 }
 
 .project-card:hover {
