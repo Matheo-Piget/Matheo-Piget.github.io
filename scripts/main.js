@@ -67,6 +67,26 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(section);
     });
 
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and add to the clicked one
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+            projectCards.forEach(card => {
+                if (filter === "all" || card.classList.contains(filter)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    });
+
     typeWriter(document.getElementById("header-title"), "Mathéo Piget");
     typeWriter(document.getElementById("header-description"), "Étudiant en L3 d'Informatique");
 });
