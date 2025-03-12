@@ -303,6 +303,16 @@ nav a:hover::after {
     transform-origin: bottom left;
 }
 
+.profile-photo {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 .filter-btn {
     background: transparent;
     color: #1ABC9C;
