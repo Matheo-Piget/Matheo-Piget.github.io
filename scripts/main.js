@@ -127,15 +127,55 @@ document.addEventListener("DOMContentLoaded", () => {
         "greedy algorithm", "backtracking", "divide and conquer", "brute force", "depth-first search", "breadth-first search", "Dijkstra's algorithm", "A* algorithm", "Bellman-Ford algorithm"];
 
         function createCodeElement() {
+            // Create the span for animation
             const span = document.createElement('span');
             span.innerText = keywords[Math.floor(Math.random() * keywords.length)];
-            span.style.left = Math.random() * 100 + 'vw';
-            span.style.animationDuration = Math.random() * 2 + 2 + 's'; // Durée aléatoire pour un effet naturel
+            span.style.position = "absolute";
+            
+            // Create a temporary hidden element to measure its width without displaying it
+            const tempSpan = span.cloneNode(true);
+            tempSpan.style.position = "absolute";
+            tempSpan.style.visibility = "hidden";
+            codeAnimationContainer.appendChild(tempSpan);
+
+            const containerWidth = codeAnimationContainer.offsetWidth;
+            let left;
+            let tries = 0;
+            let newRect;
+            const maxTries = 10;
+
+            do {
+            left = Math.random() * 100; // Position in vw
+            tempSpan.style.left = left + "vw";
+            newRect = tempSpan.getBoundingClientRect();
+
+            // Check overlap with current spans in the container
+            let overlapFound = false;
+            const existingSpans = codeAnimationContainer.getElementsByTagName('span');
+
+            for (let child of existingSpans) {
+                if (child === tempSpan) continue;
+                const childRect = child.getBoundingClientRect();
+                // Simple horizontal overlap check
+                if (newRect.left < childRect.right && newRect.right > childRect.left) {
+                overlapFound = true;
+                break;
+                }
+            }
+            if (!overlapFound) break;
+            tries++;
+            } while (tries < maxTries);
+
+            // Remove temporary element and assign computed left to the real span
+            codeAnimationContainer.removeChild(tempSpan);
+            span.style.left = left + "vw";
+            span.style.animationDuration = Math.random() * 2 + 2 + "s"; // Durée aléatoire pour un effet naturel
+
             codeAnimationContainer.appendChild(span);
-    
-            // Supprimez l'élément après la fin de l'animation
-            span.addEventListener('animationend', () => {
-                span.remove();
+
+            // Remove the span when the animation ends to keep the DOM clean.
+            span.addEventListener("animationend", () => {
+            span.remove();
             });
         }
     
