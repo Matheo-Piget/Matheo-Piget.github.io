@@ -490,10 +490,9 @@ nav a:hover::after {
 .code-animation span {
     position: absolute;
     font-family: 'Fira Code', 'Courier New', monospace;
-    color: #00b894;
-    /* Match with theme color */
-    text-shadow: 0 0 10px rgba(0, 184, 148, 0.9), 0 0 20px rgba(0, 184, 148, 0.6), 0 0 30px rgba(0, 184, 148, 0.3);
-    /* Enhanced glow effect */
+    color: #FFFF00; /* Jaune vif */
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.8), 0 0 12px rgba(255, 255, 0, 0.5);
+    opacity: 0.9;
     font-size: 1.2rem;
     animation: floatText 9s linear infinite;
     white-space: nowrap;
