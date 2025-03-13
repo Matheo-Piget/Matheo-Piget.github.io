@@ -20,18 +20,22 @@ body {
         background: linear-gradient(135deg, #006d7c, #0097a7, #33b1c1, #4da6b3);
         background-size: 400% 400%;
     }
+
     25% {
         background: linear-gradient(135deg, #00cec9, #4ecdc4, #81ecec, #00abc0);
         background-size: 400% 400%;
     }
+
     50% {
         background: linear-gradient(135deg, #4ecdc4, #81ecec, #00abc0, #00cec9);
         background-size: 400% 400%;
     }
+
     75% {
         background: linear-gradient(135deg, #81ecec, #00abc0, #00cec9, #4ecdc4);
         background-size: 400% 400%;
     }
+
     100% {
         background: linear-gradient(135deg, #007c8a, #00a7b5, #36bed0, #5cb5c1);
         background-size: 400% 400%;
@@ -74,12 +78,15 @@ header::before {
     0%, 100% {
         transform: translateY(0) rotate(0deg);
     }
+
     25% {
         transform: translateY(-10px) rotate(0.5deg);
     }
+
     50% {
         transform: translateY(-15px) rotate(0deg);
     }
+
     75% {
         transform: translateY(-7px) rotate(-0.5deg);
     }
@@ -398,6 +405,7 @@ nav a:hover::after {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -482,8 +490,10 @@ nav a:hover::after {
 .code-animation span {
     position: absolute;
     font-family: 'Fira Code', 'Courier New', monospace;
-    color: #00b894; /* Match with theme color */
-    text-shadow: 0 0 10px rgba(0, 184, 148, 0.9), 0 0 20px rgba(0, 184, 148, 0.6), 0 0 30px rgba(0, 184, 148, 0.3); /* Enhanced glow effect */
+    color: #00b894;
+    /* Match with theme color */
+    text-shadow: 0 0 10px rgba(0, 184, 148, 0.9), 0 0 20px rgba(0, 184, 148, 0.6), 0 0 30px rgba(0, 184, 148, 0.3);
+    /* Enhanced glow effect */
     font-size: 1.2rem;
     animation: floatText 9s linear infinite;
     white-space: nowrap;
@@ -494,12 +504,15 @@ nav a:hover::after {
         transform: translateY(-100%) rotate(1deg);
         opacity: 0;
     }
+
     10% {
         opacity: 0.7;
     }
+
     90% {
         opacity: 0.7;
     }
+
     100% {
         transform: translateY(100%) rotate(-1deg);
         opacity: 0;
@@ -550,11 +563,9 @@ nav a:hover::after {
     top: 0;
     left: 0;
     border-radius: 10px;
-    background: linear-gradient(
-        320deg,
-        rgba(0, 184, 148, 0.1),
-        rgba(0, 206, 201, 0.1)
-    );
+    background: linear-gradient(320deg,
+            rgba(0, 184, 148, 0.1),
+            rgba(0, 206, 201, 0.1));
     z-index: -1;
     transition: background 0.4s ease;
 }
@@ -565,26 +576,23 @@ nav a:hover::after {
 }
 
 .filter-btn.active::before {
-    background: linear-gradient(
-        320deg,
-        rgba(0, 184, 148, 0.9),
-        rgba(0, 206, 201, 0.9)
-    );
+    background: linear-gradient(320deg,
+            rgba(0, 184, 148, 0.9),
+            rgba(0, 206, 201, 0.9));
 }
 
 .filter-btn:hover::before {
     animation: rotate 1s;
-    background: linear-gradient(
-        320deg,
-        rgba(0, 184, 148, 0.2),
-        rgba(0, 206, 201, 0.2)
-    );
+    background: linear-gradient(320deg,
+            rgba(0, 184, 148, 0.2),
+            rgba(0, 206, 201, 0.2));
 }
 
 @keyframes rotate {
     0% {
         transform: rotateY(180deg);
     }
+
     100% {
         transform: rotateY(360deg);
     }
@@ -659,6 +667,7 @@ footer::before {
     0% {
         background-position: 0% 0%;
     }
+
     100% {
         background-position: 200% 0%;
     }
@@ -670,6 +679,7 @@ footer::before {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -681,6 +691,7 @@ footer::before {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -797,7 +808,7 @@ body.dark-mode {
 .cv-content {
     background: white;
     padding: 2.5em;
-    top : 25px;
+    top: 25px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -913,29 +924,29 @@ button:hover .button-text {
     .header-content h1 {
         font-size: 2.5rem;
     }
-    
+
     .header-content p {
         font-size: 1.1rem;
     }
-    
+
     nav {
         padding: 0.6em 1em;
     }
-    
+
     nav a {
         margin: 0 0.8em;
         font-size: 0.9em;
     }
-    
+
     .section {
         padding: 3em 1.5em;
     }
-    
+
     .projects-grid,
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .project-card,
     .skill-card {
         padding: 1.5em;
