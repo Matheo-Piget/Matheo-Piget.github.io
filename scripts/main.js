@@ -22,6 +22,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+  // Préchargeur d'images avec barre de progression
+  function initImagePreloader() {
+    const images = Array.from(document.images);
+    const totalImages = images.length;
+    let loadedImages = 0;
+
+    // Créer un élément de barre de progression dans le loader
+    const progressBar = document.createElement('div');
+    progressBar.classList.add('progress-bar');
+    const progressInner = document.createElement('div');
+    progressInner.classList.add('progress-inner');
+    progressBar.appendChild(progressInner);
+
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.appendChild(progressBar);
+    }
+
+    // Fonction pour mettre à jour la progression
+    const updateProgress = () => {
+      loadedImages++;
+      const percentComplete = Math.round((loadedImages / totalImages) * 100);
+      progressInner.style.width = percentComplete + '%';
+
+      // Quand tout est chargé
+      if (loadedImages === totalImages) {
+        setTimeout(() => {
+          if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+              loader.style.display = 'none';
+            }, 500);
+          }
+        }, 500);
+      }
+    };
+
+    // Précharger toutes les images
+    images.forEach(img => {
+      if (img.complete) {
+        updateProgress();
+      } else {
+        img.addEventListener('load', updateProgress);
+        img.addEventListener('error', updateProgress);
+      }
+    });
+  }
+
+  initImagePreloader();
+
   // Smooth scroll
   // Animation de défilement améliorée
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

@@ -29,6 +29,27 @@ body {
     flex-wrap: wrap;
 }
 
+/* Barre de progression pour le chargement */
+.progress-bar {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  .progress-inner {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #00b894, #00cec9);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
 /* Badges avec effet néon */
 .badge {
     background: rgba(255, 255, 255, 0.1);
