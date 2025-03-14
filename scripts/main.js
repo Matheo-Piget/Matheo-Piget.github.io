@@ -69,18 +69,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1'
-        entry.target.style.transform = 'translateY(0)'
-        obs.unobserve(entry.target)
+        // Ajouter une animation différente selon le type d'élément
+        if (entry.target.classList.contains('skill-card')) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'scale(1)';
+        } else if (entry.target.classList.contains('project-card')) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        } else {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+        obs.unobserve(entry.target);
       }
-    })
-  }, observerOptions)
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
   sections.forEach(section => {
     section.style.opacity = '0'
     section.style.transform = 'translateY(20px)'
     observer.observe(section)
   })
+
+  document.querySelectorAll('.skill-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.8)';
+    observer.observe(card);
+  });
+
+  document.querySelectorAll('.project-card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transitionDelay = `${index * 0.1}s`;
+    observer.observe(card);
+  });
 
   const filterButtons = document.querySelectorAll('.filter-btn')
   const projectCards = document.querySelectorAll('.project-card')
@@ -98,6 +120,34 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
   })
+
+  // Gestion du formulaire de contact
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      // Le formulaire sera géré par formspree, mais nous ajoutons un effet visuel
+      const button = this.querySelector('button[type="submit"]');
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+
+      // Après soumission réussie (géré par formspree)
+      setTimeout(() => {
+        // Réinitialiser le bouton après quelques secondes
+        button.innerHTML = originalText;
+
+        // Créer notification de confirmation
+        const notification = document.createElement('div');
+        notification.className = 'form-submitted';
+        notification.innerHTML = '<i class="fas fa-check-circle"></i> Message envoyé avec succès!';
+        document.body.appendChild(notification);
+
+        // Supprimer la notification après 5 secondes
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 5000);
+      }, 2000);
+    });
+  }
 
   const codeAnimationContainer = document.querySelector('.code-animation')
   const keywords = [
@@ -480,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const maxElements = 20 // Maximum number of elements to display at once
   const updateInterval = 5000 // Intervalle de mise à jour en millisecondes
   const updateBatchSize = 5 // Nombre d'éléments à mettre à jour à chaque intervalle
-  function createCodeElement () {
+  function createCodeElement() {
     if (codeAnimationContainer.childElementCount >= maxElements) return
     // Create the span for animation
     const span = document.createElement('span')
@@ -534,7 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  function updateKeywords () {
+  function updateKeywords() {
     // Supprimez progressivement les éléments existants
     const existingSpans = Array.from(
       codeAnimationContainer.getElementsByTagName('span')
