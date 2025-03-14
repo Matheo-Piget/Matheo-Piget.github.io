@@ -23,14 +23,50 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   // Smooth scroll
+  // Animation de défilement améliorée
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      e.preventDefault()
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      })
-    })
-  })
+      e.preventDefault();
+
+      // Animation de flash subtil avant défilement
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        // Effet de flash sur la section cible
+        const flashOverlay = document.createElement('div');
+        flashOverlay.style.position = 'absolute';
+        flashOverlay.style.top = '0';
+        flashOverlay.style.left = '0';
+        flashOverlay.style.width = '100%';
+        flashOverlay.style.height = '100%';
+        flashOverlay.style.backgroundColor = 'rgba(0, 184, 148, 0.1)';
+        flashOverlay.style.zIndex = '0';
+        flashOverlay.style.opacity = '0';
+        flashOverlay.style.transition = 'opacity 0.5s ease';
+
+        targetElement.style.position = 'relative';
+        targetElement.appendChild(flashOverlay);
+
+        setTimeout(() => {
+          flashOverlay.style.opacity = '0.7';
+
+          setTimeout(() => {
+            flashOverlay.style.opacity = '0';
+            setTimeout(() => {
+              targetElement.removeChild(flashOverlay);
+            }, 500);
+          }, 300);
+        }, 10);
+
+        // Défilement doux
+        window.scrollTo({
+          behavior: 'smooth',
+          top: targetElement.offsetTop - 50
+        });
+      }
+    });
+  });
 
   // Loader
   const loader = document.getElementById('loader')
