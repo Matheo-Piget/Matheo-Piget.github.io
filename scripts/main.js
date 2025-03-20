@@ -10,6 +10,39 @@ document.addEventListener('DOMContentLoaded', () => {
     darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
   }
 
+  // Ajoutez cette fonction à votre script main.js
+  function initCustomCursor() {
+    // Créer les éléments du curseur personnalisé
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor');
+    const cursorDot = document.createElement('div');
+    cursorDot.classList.add('cursor-dot');
+    document.body.appendChild(cursor);
+    document.body.appendChild(cursorDot);
+
+    // Déplacer le curseur avec la souris
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+      cursorDot.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+    });
+
+    // Effet sur les éléments interactifs
+    const interactiveElements = document.querySelectorAll('a, button, .filter-btn, .project-card, .skill-card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-active');
+        cursorDot.classList.add('cursor-active');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-active');
+        cursorDot.classList.remove('cursor-active');
+      });
+    });
+  }
+
+  // Appelez cette fonction dans votre code existant
+  initCustomCursor();
+
   // Basculer le mode sombre
   darkModeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode')
@@ -21,6 +54,30 @@ document.addEventListener('DOMContentLoaded', () => {
       darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'
     }
   })
+
+  // Effet de parallaxe sur défilement
+  function initParallaxEffect() {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+
+      // Parallaxe pour les cartes de projets
+      document.querySelectorAll('.project-card').forEach((card, index) => {
+        const speed = 0.02 + (index % 3) * 0.01;
+        const yPos = scrollTop * speed;
+        card.style.transform = `translateY(${-yPos}px)`;
+      });
+
+      // Parallaxe pour les badges du header
+      document.querySelectorAll('.header-badges .badge').forEach((badge, index) => {
+        const speed = 0.05 + (index * 0.02);
+        const yPos = scrollTop * speed;
+        badge.style.transform = `translateY(${-yPos}px)`;
+      });
+    });
+  }
+
+  // Appelez cette fonction dans votre code existant
+  initParallaxEffect();
 
   // Préchargeur d'images avec barre de progression
   function initImagePreloader() {
@@ -135,18 +192,50 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   // Typewriter effect
-  const typeWriter = (element, text, speed = 100) => {
-    element.innerHTML = ''
-    let i = 0
-    const interval = setInterval(() => {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i)
-        i++
-      } else {
-        clearInterval(interval)
-      }
-    }, speed)
+  // Animation de texte avancée pour le header
+  function initTextAnimation() {
+    const headerTitle = document.getElementById('header-title');
+    const headerDescription = document.getElementById('header-description');
+    const originalTitle = 'Mathéo Piget';
+    const originalDesc = "Étudiant en L3 d'Informatique";
+
+    // Animation pour le titre
+    const animateText = (element, text, className) => {
+      element.innerHTML = '';
+      text.split('').forEach((char, index) => {
+        const charSpan = document.createElement('span');
+        charSpan.textContent = char;
+        charSpan.classList.add(className);
+        charSpan.style.animationDelay = `${index * 0.05}s`;
+        element.appendChild(charSpan);
+      });
+    };
+
+    // Animer le titre et la description
+    animateText(headerTitle, originalTitle, 'char-animation');
+    setTimeout(() => {
+      animateText(headerDescription, originalDesc, 'char-animation');
+    }, originalTitle.length * 50);
   }
+
+  // Appelez cette fonction dans votre code existant
+  initTextAnimation();
+
+  // Indicateur de progression de lecture
+  function initScrollIndicator() {
+    const indicator = document.createElement('div');
+    indicator.className = 'scroll-indicator';
+    document.body.appendChild(indicator);
+
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      indicator.style.width = `${scrolled}%`;
+    });
+  }
+
+  // Appelez cette fonction dans votre code existant
+  initScrollIndicator();
 
   const sections = document.querySelectorAll('.section, .cv-section')
   const observerOptions = {
@@ -689,10 +778,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mettez à jour les mots-clés progressivement
   setInterval(updateKeywords, updateInterval)
-
-  typeWriter(document.getElementById('header-title'), 'Mathéo Piget')
-  typeWriter(
-    document.getElementById('header-description'),
-    "Étudiant en L3 d'Informatique"
-  )
 })
