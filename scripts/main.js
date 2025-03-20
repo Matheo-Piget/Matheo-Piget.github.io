@@ -206,6 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const charSpan = document.createElement('span');
         charSpan.textContent = char;
         charSpan.classList.add(className);
+        
+        // Ajouter une classe spéciale pour les espaces
+        if (char === ' ') {
+          charSpan.classList.add('space-char');
+          charSpan.innerHTML = '&nbsp;';
+        }
+        
         charSpan.style.animationDelay = `${index * 0.05}s`;
         element.appendChild(charSpan);
       });
