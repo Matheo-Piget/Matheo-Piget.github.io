@@ -60,13 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
       const scrollTop = window.pageYOffset;
 
-      // Parallaxe pour les cartes de projets
-      document.querySelectorAll('.project-card').forEach((card, index) => {
-        const speed = 0.02 + (index % 3) * 0.01;
-        const yPos = scrollTop * speed;
-        card.style.transform = `translateY(${-yPos}px)`;
-      });
-
       // Parallaxe pour les badges du header
       document.querySelectorAll('.header-badges .badge').forEach((badge, index) => {
         const speed = 0.05 + (index * 0.02);

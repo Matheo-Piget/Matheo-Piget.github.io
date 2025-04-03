@@ -385,6 +385,8 @@ nav a:hover::after {
   justify-content: space-between;
   border: 1px solid rgba(0, 0, 0, 0.03);
   overflow: hidden;
+  transform-style: flat;
+  perspective: none;
 }
 
 .project-card.hidden {
@@ -395,7 +397,7 @@ nav a:hover::after {
 }
 
 .project-card:hover {
-  transform: translateY(-15px);
+  transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
