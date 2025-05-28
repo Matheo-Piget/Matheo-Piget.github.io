@@ -199,13 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const charSpan = document.createElement('span');
         charSpan.textContent = char;
         charSpan.classList.add(className);
-        
+
         // Ajouter une classe spéciale pour les espaces
         if (char === ' ') {
           charSpan.classList.add('space-char');
           charSpan.innerHTML = '&nbsp;';
         }
-        
+
         charSpan.style.animationDelay = `${index * 0.05}s`;
         element.appendChild(charSpan);
       });
@@ -285,16 +285,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Filtrage des projets avec animation
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const filter = button.getAttribute('data-filter')
+      // Retirer la classe active de tous les boutons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Ajouter la classe active au bouton cliqué
+      button.classList.add('active');
+
+      const filter = button.getAttribute('data-filter');
+
       projectCards.forEach(card => {
         if (filter === 'all' || card.classList.contains(filter)) {
-          card.style.display = '' // Réaffiche l'élément (selon le style de base)
+          card.style.display = ''; // Réaffiche l'élément
+          card.classList.remove('hidden');
         } else {
-          card.style.display = 'none' // Supprime de la mise en page, forçant le grid à se réorganiser
+          card.style.display = 'none'; // Cache l'élément
+          card.classList.add('hidden');
         }
-      })
-    })
-  })
+      });
+    });
+  });
 
   // Gestion du formulaire de contact
   const contactForm = document.getElementById('contact-form');
